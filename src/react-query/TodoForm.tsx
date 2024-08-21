@@ -23,13 +23,17 @@ const TodoForm = () => {
         savedTodo,
         ...(todos || []),
       ]);
+
+      if (ref.current) ref.current.value = '';
     },
   });
   const ref = useRef<HTMLInputElement>(null);
 
   return (
     <>
-      {addTodo.error && <div className="alert alert-danger">{addTodo.error.message}</div>}
+      {addTodo.error && (
+        <div className="alert alert-danger">{addTodo.error.message}</div>
+      )}
       <form
         className="row mb-3"
         onSubmit={(event) => {
@@ -49,7 +53,9 @@ const TodoForm = () => {
           <input ref={ref} type="text" className="form-control" />
         </div>
         <div className="col">
-          <button className="btn btn-primary">Add</button>
+          <button disabled={addTodo.isLoading} className="btn btn-primary">
+            {addTodo.isLoading ? "Adding..." : "Add"}
+          </button>
         </div>
       </form>
     </>
