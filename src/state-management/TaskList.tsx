@@ -1,6 +1,8 @@
 import { useContext, useReducer, useState } from "react";
 import TasksContext from "./contexts/tasksContext";
 import AuthContext from "./contexts/authContext";
+import useTasks from "./hooks/useTasks";
+import useAuth from "./hooks/useAuth";
 
 interface Task {
   id: number;
@@ -9,12 +11,12 @@ interface Task {
 
 const TaskList = () => {
   // const [tasks, setTasks] = useState<Task[]>([]);
-  const { tasks, dispatch } = useContext(TasksContext);
-  const { user } = useContext(AuthContext);
+  const { tasks, dispatch } = useTasks();
+  const { user } = useAuth();
 
   return (
     <>
-    <p>User: {user}</p>
+      <p>User: {user}</p>
       <button
         onClick={() =>
           dispatch({
