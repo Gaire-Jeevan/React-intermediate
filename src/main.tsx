@@ -8,26 +8,17 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
 import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./routing/routes";
 
 const queryCLient = new QueryClient(
-  // {
-//   defaultOptions: {
-//     queries: {
-//       retry: 3,
-//       cacheTime: 300_000, // 5min
-//       staleTime: 10 * 1000, // 10sec
-//       refetchOnWindowFocus: false,
-//       refetchOnReconnect: false,
-//       refetchOnMount: false,
-//     },
-//   },
-// }
+  
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryCLient}>
-      <App />
+      <RouterProvider router={router} />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
