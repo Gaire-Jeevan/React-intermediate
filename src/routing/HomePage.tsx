@@ -2,7 +2,6 @@ import { error } from "console";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  throw new Error("unexpected error");
 
   return (
     <>
